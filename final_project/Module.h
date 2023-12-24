@@ -2,25 +2,26 @@
 #define MODULE_H_
 
 #include <string>
+#include <vector>
 
 using namespace std;
 
 class Module
 {
 private:
-    string name;
+    int index;
     int width;
     int height;
     int x, y;
 
 public:
     Module();
-    Module(string n, int w, int h);
+    Module(int n, int w, int h);
 
     void set_x(int x);
     void set_y(int y);
 
-    string get_name();
+    int get_index();
 
     int get_x();
     int get_y();

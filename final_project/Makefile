@@ -1,8 +1,8 @@
 CXX := g++
 CXXFLAGS := -O3 -std=c++20
 
-SOURCES := main.cpp Plan.cpp Partition.cpp Module.cpp SA.cpp Contour.cpp
-HEADERS := main.h Plan.h Partition.h Module.h SA.h Contour.h
+SOURCES := main.cpp Plan.cpp Partition.cpp Module.cpp SA.cpp Contour.cpp FM.cpp
+HEADERS := main.h Plan.h Partition.h Module.h SA.h Contour.h FM.h
 
 OBJDIR := objs
 OBJECTS := $(patsubst %.cpp,$(OBJDIR)/%.o,$(SOURCES))

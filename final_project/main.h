@@ -10,9 +10,12 @@
 
 double R_lowerbound = 0.0;
 double R_upperbound = 0.0;
-double Total_area = 0.0;
-double Bound_area = 0.0;
 
-void Input_File(string filename, Partition *partition);
+double Partition_Constraint;
+
+int Total_area = 0.0;
+int Bound_area = 0.0;
+
+void Case_File(string filename, vector<Module> &Module_List);
 
 #endif

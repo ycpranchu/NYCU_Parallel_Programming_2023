@@ -62,18 +62,18 @@ void SA::Fast_Simulated_Annealing()
     Rotate = Rotate_copy;
     Root = Root_copy;
 
-    int accept = 0, reject = 0;
+    int accept = 0;
     double Temprature_init = 0.0, Temprature = 0.0, P = 0.99;
 
     Temprature_init = -1 * delta_cost / init_times / log(P);
     Temprature = Temprature_init;
 
-    while (Temprature > T && reject < s * 0.98)
+    cout << "Temprature: " << Temprature << endl;
+
+    while (Temprature > T)
     {
         double Probability = Temprature / Temprature_init;
-
         delta_cost = 0.0;
-        reject = 0;
 
         for (int i = 0; i < s; ++i)
         {
@@ -88,16 +88,10 @@ void SA::Fast_Simulated_Annealing()
 
                 if ((double)seed_2 / RAND_MAX <= Probability) // Up-hill accepted {}
                     accept = 1;
-                else
-                    reject += 1;
             }
             else if (contour.get_W_H_ratio() < R_upperbound && contour.get_W_H_ratio() > R_lowerbound) // Delta(cost) < 0
             {
                 accept = 1;
-            }
-            else
-            {
-                reject += 1;
             }
 
             if (accept == 1)

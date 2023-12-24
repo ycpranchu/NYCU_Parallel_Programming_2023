@@ -2,14 +2,11 @@
 
 Module::Module()
 {
-    name = "";
-    width = 0;
-    height = 0;
 }
 
-Module::Module(string n, int w, int h)
+Module::Module(int n, int w, int h)
 {
-    name = n;
+    index = n;
     width = w;
     height = h;
 }
@@ -17,7 +14,7 @@ Module::Module(string n, int w, int h)
 void Module::set_x(int x) { this->x = x; }
 void Module::set_y(int y) { this->y = y; }
 
-string Module::get_name() { return name; };
+int Module::get_index() { return index; };
 
 int Module::get_x() { return x; }
 int Module::get_y() { return y; }

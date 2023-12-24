@@ -4,21 +4,40 @@ Partition::Partition(/* args */)
 {
 }
 
-Partition::Partition(int i)
+void Partition::set_Index(int index)
 {
-    index = i;
+    this->index = index;
 }
 
-void Partition::Set_Constraint(double R_lowerbound, double R_upperbound)
+void Partition::set_Constraint(double R_lowerbound, double R_upperbound)
 {
     this->R_lowerbound = R_lowerbound;
     this->R_upperbound = R_upperbound;
 }
 
-void Partition::Set_Module(Module module)
+void Partition::set_Module_List(vector<Module> &Module_List)
+{
+    this->Module_List = Module_List;
+}
+
+void Partition::set_List_Node(Module module)
 {
     Module_List.emplace_back(module);
 }
+
+int Partition::get_Area()
+{
+    int Area = 0;
+
+    for (auto &item : Module_List)
+    {
+        Area += item.get_width() * item.get_height();
+    }
+
+    return Area;
+}
+
+vector<Module> Partition::get_Module_List() { return Module_List; }
 
 void Partition::Init_Module_Tree()
 {
@@ -54,8 +73,6 @@ void Partition::Init_Module_Tree()
         Tree_prev[id + 1] = id;
         ++id;
     }
-
-    return;
 }
 
 void Partition::Simulated_Annealing()
@@ -87,7 +104,7 @@ void Partition::Output()
     for (int i = 0; i < Module_num; i++)
     {
         Module item = Module_List[i];
-        ofs << item.get_name() << " " << item.get_x() << " " << item.get_y();
+        ofs << "b" << item.get_index() << " " << item.get_x() << " " << item.get_y();
 
         if (Rotate[i] == 1)
             ofs << " R";
