@@ -1,10 +1,10 @@
 import random
 
 constraint_rate = 0.5
-Connect_num = 300
+Connect_num = 500
 Module_num = 300
 connect_size_1 = 2
-connect_size_2 = 5
+connect_size_2 = 20
 
 # Function to generate a list of random connections for a block
 def generate_connections(block_id, max_connections, total_blocks):
@@ -24,6 +24,6 @@ with open('connect.in', 'w') as file:
         connections = generate_connections(count, num_connections, Module_num)
 
         # Format the connections as block names
-        connections_str = ' '.join('b{}'.format(c) for c in connections)
+        connections_str = ' '.join('m{}'.format(c) for c in connections)
 
-        file.write("n{} {} ;\n".format(count, connections_str))
+        file.write("NET n{} {} ;\n".format(count, connections_str))

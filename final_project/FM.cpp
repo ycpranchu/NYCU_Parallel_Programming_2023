@@ -11,7 +11,7 @@ FM::FM(Partition partition, string connect_filename)
     cell_nums = Module_List.size();
 }
 
-void FM::Input_File()
+void FM::Initial_Dataset()
 {
     ifstream ifs;
     ifs.open(connect_filename);
@@ -24,7 +24,7 @@ void FM::Input_File()
 
     while (getline(ifs, temp, ' ')) // Net array;
     {
-        if (temp[0] == 'b')
+        if (temp[0] == 'm')
         {
             int i = stoi(temp.substr(1));
             item.emplace_back(i);
@@ -54,7 +54,7 @@ void FM::Input_File()
 void FM::Output_File()
 {
     ofstream ofs;
-    ofs.open("case4.out");
+    ofs.open("connect.out");
 
     int n = final_partition.size();
     int group2_size = reduce(final_partition.begin(), final_partition.end());
@@ -71,12 +71,12 @@ void FM::Output_File()
     ofs << "Cutsize = " << global_min_cutsize << "\n";
     ofs << "G1 " << final_partition.size() - group2_size << "\n";
     for (auto &i : partition_a)
-        ofs << "b" << i << " ";
+        ofs << "m" << i << " ";
     ofs << ";"
         << "\n"
         << "G2 " << group2_size << "\n";
     for (auto &i : partition_b)
-        ofs << "b" << i << " ";
+        ofs << "m" << i << " ";
     ofs << ";"
         << "\n";
 
@@ -399,20 +399,23 @@ void FM::FM_Partitioning()
     cout << "[Found the Solution]" << endl;
     cout << "Min Cutsize: " << global_min_cutsize << endl;
     int group2_size = reduce(final_partition.begin(), final_partition.end());
-    cout << "G1: " << final_partition.size() - group2_size << " G2: " << group2_size << "\n";
+    cout << "Group 1: " << final_partition.size() - group2_size << " Group 2: " << group2_size << "\n";
+
+    list_1.clear();
+    list_2.clear();
 
     for (int i = 0; i < cell_nums; i++)
     {
         if (final_partition[i] == 0)
-            partition1.set_List_Node(Module_List[i]);
+            list_1.emplace_back(Module_List[i]);
         else
-            partition2.set_List_Node(Module_List[i]);
+            list_2.emplace_back(Module_List[i]);
     }
 }
 
-Partition FM::get_Partition1() { return partition1; }
+vector<Module> FM::get_list_1() { return list_1; }
 
-Partition FM::get_Partition2() { return partition2; }
+vector<Module> FM::get_list_2() { return list_2; }
 
 FM::~FM()
 {

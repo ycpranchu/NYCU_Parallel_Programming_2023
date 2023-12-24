@@ -38,7 +38,6 @@ public:
     void set_Index(int index);
     void set_Constraint(double R_lowerbound, double R_upperbound);
     void set_Module_List(vector<Module> &Module_List);
-    void set_List_Node(Module module);
 
     int get_Area();
     vector<Module> get_Module_List();

@@ -30,8 +30,8 @@ private:
     string connect_filename;
 
     Partition partition;
-    Partition partition1;
-    Partition partition2;
+    vector<Module> list_1;
+    vector<Module> list_2;
 
     vector<vector<int>> Net;
     vector<vector<int>> Cell;
@@ -61,19 +61,19 @@ public:
     FM(Partition partition, string connect_filename);
     ~FM();
 
-    void Input_File();
-    void Output_File();
-
+    void Initial_Dataset();
     void Initial();
     void Initial_Gain();
+
+    void Output_File();
 
     int Find_Element();
     int Update_Gain(int max_node);
 
     void FM_Partitioning();
 
-    Partition get_Partition1();
-    Partition get_Partition2();
+    vector<Module> get_list_1();
+    vector<Module> get_list_2();
 };
 
 #endif

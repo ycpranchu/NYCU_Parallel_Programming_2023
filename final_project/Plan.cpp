@@ -71,12 +71,17 @@ void Plan::Start_Planning() // Main function of this system
     Partition_List.pop_front();
 
     FM FM_system(partition, connect_filename);
-    FM_system.Input_File();
+    FM_system.Initial_Dataset();
     FM_system.Initial();
     FM_system.FM_Partitioning();
 
-    Partition_List.emplace_back(FM_system.get_Partition1());
-    Partition_List.emplace_back(FM_system.get_Partition2());
+    vector<Module> list_1 = FM_system.get_list_1();
+    partition.set_Module_List(list_1);
+    Partition_List.emplace_back(partition);
+
+    vector<Module> list_2 = FM_system.get_list_2();
+    partition.set_Module_List(list_2);
+    Partition_List.emplace_back(partition);
 }
 
 void Plan::Output_Planning()

@@ -20,11 +20,6 @@ void Partition::set_Module_List(vector<Module> &Module_List)
     this->Module_List = Module_List;
 }
 
-void Partition::set_List_Node(Module module)
-{
-    Module_List.emplace_back(module);
-}
-
 int Partition::get_Area()
 {
     int Area = 0;
@@ -104,7 +99,7 @@ void Partition::Output()
     for (int i = 0; i < Module_num; i++)
     {
         Module item = Module_List[i];
-        ofs << "b" << item.get_index() << " " << item.get_x() << " " << item.get_y();
+        ofs << "m" << item.get_index() << " " << item.get_x() << " " << item.get_y();
 
         if (Rotate[i] == 1)
             ofs << " R";

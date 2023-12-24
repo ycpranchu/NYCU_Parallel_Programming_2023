@@ -68,8 +68,6 @@ void SA::Fast_Simulated_Annealing()
     Temprature_init = -1 * delta_cost / init_times / log(P);
     Temprature = Temprature_init;
 
-    cout << "Temprature: " << Temprature << endl;
-
     while (Temprature > T)
     {
         double Probability = Temprature / Temprature_init;

@@ -10,7 +10,7 @@ with open('case.in', 'w') as file:
     file.write("{} {}\n". format(upper_bound, lower_bound))
     
     for count in range(Module_num):
-        file.write("b{} {} {}".format(count, random.randint(10, Size_range), random.randint(10, Size_range)))
+        file.write("m{} {} {}".format(count, random.randint(10, Size_range), random.randint(10, Size_range)))
         if (count != Module_num - 1):
             file.write("\n")
 
