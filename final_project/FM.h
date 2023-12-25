@@ -27,6 +27,8 @@ class FM
 {
 private:
     vector<Module> Module_List;
+    unordered_map<int, int> Module_map;
+
     string connect_filename;
 
     Partition partition;
@@ -54,7 +56,7 @@ private:
 
     int global_min_cutsize = INT32_MAX;
     int group_size[2];
-    int Epochs = 30;
+    int Epochs = 100;
 
 public:
     FM(/* args */);

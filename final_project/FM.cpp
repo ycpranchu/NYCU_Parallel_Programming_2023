@@ -9,6 +9,13 @@ FM::FM(Partition partition, string connect_filename)
 
     Module_List = partition.get_Module_List();
     cell_nums = Module_List.size();
+
+    int count = 0;
+    for (auto &module : Module_List)
+    {
+        Module_map[module.get_index()] = count;
+        count += 1;
+    }
 }
 
 void FM::Initial_Dataset()
@@ -27,11 +34,15 @@ void FM::Initial_Dataset()
         if (temp[0] == 'm')
         {
             int i = stoi(temp.substr(1));
-            item.emplace_back(i);
+
+            if (Module_map.count(i) != 0)
+                item.emplace_back(Module_map[i]);
         }
         else if (temp[0] == ';')
         {
-            Net.emplace_back(item);
+            if (!item.empty())
+                Net.emplace_back(item);
+
             item.clear();
         }
     }
@@ -331,7 +342,7 @@ void FM::FM_Partitioning()
 {
     for (int epoch = 0; epoch < Epochs; ++epoch)
     {
-        cout << "[Running the algorithm, epoch " << epoch << "]" << endl;
+        // cout << "[Running the algorithm, epoch " << epoch << "]" << endl;
 
         int cutsize = 0;
         for (int i = 0; i < (int)Net.size(); ++i)
@@ -396,10 +407,10 @@ void FM::FM_Partitioning()
         }
     }
 
-    cout << "[Found the Solution]" << endl;
-    cout << "Min Cutsize: " << global_min_cutsize << endl;
-    int group2_size = reduce(final_partition.begin(), final_partition.end());
-    cout << "Group 1: " << final_partition.size() - group2_size << " Group 2: " << group2_size << "\n";
+    // cout << "[Done FM Partitioning]" << endl;
+    // cout << "Min Cutsize: " << global_min_cutsize << endl;
+    // int group2_size = reduce(final_partition.begin(), final_partition.end());
+    // cout << "Group 1: " << final_partition.size() - group2_size << " Group 2: " << group2_size << "\n";
 
     list_1.clear();
     list_2.clear();

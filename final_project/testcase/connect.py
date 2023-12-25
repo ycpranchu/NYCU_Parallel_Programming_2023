@@ -15,7 +15,7 @@ def generate_connections(block_id, max_connections, total_blocks):
             connections.add(connection)
     return connections
 
-with open('connect.in', 'w') as file:
+with open('connect_{}.in'.format(Module_num), 'w') as file:
     file.write("{}\n".format(constraint_rate))
     
     for count in range(Connect_num):

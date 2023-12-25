@@ -62,15 +62,41 @@ int main(int argc, char *argv[])
     cout << "Reading the input file..." << endl;
 
     Case_File(case_filename, Module_List);
-
-    cout << "Total area: " << Total_area << endl;
     Bound_area = Total_area / 20;
 
-    Plan Main_Plan(Module_List, connect_filename);
-    Main_Plan.Set_Bound(Total_area, Bound_area);
-    Main_Plan.Set_Constraint(R_lowerbound, R_upperbound, Partition_Constraint);
-    Main_Plan.Start_Planning();
-    Main_Plan.Output_Planning();
+    cout << "----------------------------------------------------------------" << endl;
+    cout << "[Serial version]" << endl;
+
+    START = currentSeconds();
+    for (int i = 0; i < Iterations; i++)
+    {
+        Plan Main_Plan(Module_List, connect_filename);
+        Main_Plan.Set_Bound(Total_area, Bound_area);
+        Main_Plan.Set_Constraint(R_lowerbound, R_upperbound, Partition_Constraint);
+        Main_Plan.Start_Planning();
+        Main_Plan.Output_Planning();
+    }
+    END = currentSeconds();
+
+    double serial_time = END - START;
+    cout << serial_time << " seconds" << endl;
+
+    cout << "----------------------------------------------------------------" << endl;
+    cout << "[OpenMP version]" << endl;
+
+    START = currentSeconds();
+    for (int i = 0; i < Iterations; i++)
+    {
+        Plan Main_Plan(Module_List, connect_filename);
+        Main_Plan.Set_Bound(Total_area, Bound_area);
+        Main_Plan.Set_Constraint(R_lowerbound, R_upperbound, Partition_Constraint);
+        Main_Plan.OMP_Start_Planning();
+        Main_Plan.OMP_Output_Planning();
+    }
+    END = currentSeconds();
+
+    double openmp_time = END - START;
+    cout << openmp_time << " seconds - " << serial_time / openmp_time << " x faster than serial version" << endl;
 
     return 0;
 }

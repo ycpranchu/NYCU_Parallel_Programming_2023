@@ -36,7 +36,7 @@ private:
     vector<int> Rotate_copy;
 
     // Simulated Annealing Parameters
-    int init_times = 100, c = 100, k = 8, s = 5000;
+    int init_times = 100, c = 100, k = 8, s = 10000;
     double T = 0.0001, alpha = 0.8, anneal_rate = 0.9;
 
 public:

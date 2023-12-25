@@ -1,15 +1,15 @@
 CXX := g++
-CXXFLAGS := -O3 -std=c++20
+CXXFLAGS := -O3 -std=c++20 -Werror=unused-variable -fopenmp
 
 SOURCES := main.cpp Plan.cpp Partition.cpp Module.cpp SA.cpp Contour.cpp FM.cpp
-HEADERS := main.h Plan.h Partition.h Module.h SA.h Contour.h FM.h
+HEADERS := main.h Plan.h Partition.h Module.h SA.h Contour.h FM.h CycleTimer.h
 
 OBJDIR := objs
 OBJECTS := $(patsubst %.cpp,$(OBJDIR)/%.o,$(SOURCES))
 
 OUTPUTDIR := floorplan
 
-TARGET := serial_PPF
+TARGET := PPF
 
 $(TARGET): $(OBJECTS)
 	$(CXX) $(CXXFLAGS) $^ -o $@

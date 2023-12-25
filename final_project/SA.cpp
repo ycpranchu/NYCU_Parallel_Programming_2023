@@ -31,9 +31,7 @@ void SA::Fast_Simulated_Annealing()
     Contour contour(Module_List);
     contour.Update(Root, Tree_left, Tree_right, Tree_prev, Rotate);
 
-    double previous_area = contour.get_Area();
     double average_area = contour.get_Area();
-    double previous_wh = contour.get_W_H_ratio();
     double cost = 0.0;
 
     double previous_cost = 1;

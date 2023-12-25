@@ -4,6 +4,7 @@
 #include <vector>
 #include <unordered_map>
 #include <deque>
+#include <omp.h>
 
 #include "Partition.h"
 #include "Module.h"
@@ -17,8 +18,7 @@ private:
     vector<Module> Module_List;
     string connect_filename;
 
-    deque<Partition> Partition_List;
-    int list_size;
+    vector<Partition> Partition_List;
 
     int Total_area;
     int Bound_area;
@@ -37,6 +37,9 @@ public:
     void Initial_Partition();
     void Start_Planning();
     void Output_Planning();
+
+    void OMP_Start_Planning();
+    void OMP_Output_Planning();
 };
 
 #endif

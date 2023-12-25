@@ -6,7 +6,7 @@ Size_range = 100
 upper_bound = 0.6
 lower_bound = 1.75
 
-with open('case.in', 'w') as file:
+with open('case_{}.in'.format(Module_num), 'w') as file:
     file.write("{} {}\n". format(upper_bound, lower_bound))
     
     for count in range(Module_num):

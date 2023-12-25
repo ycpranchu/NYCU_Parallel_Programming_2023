@@ -93,7 +93,6 @@ void Partition::Output()
     ofs.open("floorplan/partition_" + to_string(index) + ".out");
 
     ofs << "A = " << (int)contour.get_Area() << "\n";
-    cout << "A = " << (int)contour.get_Area() << "\n";
     ofs << "R = " << contour.get_W_H_ratio() << "\n";
 
     for (int i = 0; i < Module_num; i++)

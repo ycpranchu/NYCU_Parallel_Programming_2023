@@ -23,7 +23,7 @@ void Contour::Generate_Graph()
 {
     ContourNode *node_1 = new ContourNode(0, 0);
     ContourNode *node_2 = new ContourNode(INT32_MAX, 0);
-    ContourNode *start = node_1, *temp;
+    ContourNode *start = node_1;
 
     node_1->next = node_2;
     node_2->prev = node_1;
