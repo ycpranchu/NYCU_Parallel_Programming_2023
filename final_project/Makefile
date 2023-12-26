@@ -1,5 +1,5 @@
 CXX := g++
-CXXFLAGS := -O3 -std=c++20 -Werror=unused-variable -fopenmp
+CXXFLAGS := -O3 -std=c++20 -Werror=unused-variable -fopenmp -pthread
 
 SOURCES := main.cpp Plan.cpp Partition.cpp Module.cpp SA.cpp Contour.cpp FM.cpp
 HEADERS := main.h Plan.h Partition.h Module.h SA.h Contour.h FM.h CycleTimer.h

@@ -72,13 +72,13 @@ int main(int argc, char *argv[])
     {
         Plan Main_Plan(Module_List, connect_filename);
         Main_Plan.Set_Bound(Total_area, Bound_area);
-        Main_Plan.Set_Constraint(R_lowerbound, R_upperbound, Partition_Constraint);
+        Main_Plan.Set_Constraint(R_lowerbound, R_upperbound);
         Main_Plan.Start_Planning();
         Main_Plan.Output_Planning();
     }
     END = currentSeconds();
 
-    double serial_time = END - START;
+    double serial_time = (END - START) / Iterations;
     cout << serial_time << " seconds" << endl;
 
     cout << "----------------------------------------------------------------" << endl;
@@ -89,14 +89,31 @@ int main(int argc, char *argv[])
     {
         Plan Main_Plan(Module_List, connect_filename);
         Main_Plan.Set_Bound(Total_area, Bound_area);
-        Main_Plan.Set_Constraint(R_lowerbound, R_upperbound, Partition_Constraint);
+        Main_Plan.Set_Constraint(R_lowerbound, R_upperbound);
         Main_Plan.OMP_Start_Planning();
         Main_Plan.OMP_Output_Planning();
     }
     END = currentSeconds();
 
-    double openmp_time = END - START;
+    double openmp_time = (END - START) / Iterations;
     cout << openmp_time << " seconds - " << serial_time / openmp_time << " x faster than serial version" << endl;
+
+    cout << "----------------------------------------------------------------" << endl;
+    cout << "[Pthread version]" << endl;
+
+    START = currentSeconds();
+    for (int i = 0; i < Iterations; i++)
+    {
+        Plan Main_Plan(Module_List, connect_filename);
+        Main_Plan.Set_Bound(Total_area, Bound_area);
+        Main_Plan.Set_Constraint(R_lowerbound, R_upperbound);
+        Main_Plan.Pthread_Start_Planning();
+        Main_Plan.Pthread_Output_Planning();
+    }
+    END = currentSeconds();
+
+    double pthread_time = (END - START) / Iterations;
+    cout << pthread_time << " seconds - " << serial_time / pthread_time << " x faster than serial version" << endl;
 
     return 0;
 }

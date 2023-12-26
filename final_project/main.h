@@ -14,13 +14,10 @@ using namespace std;
 double R_lowerbound = 0.0;
 double R_upperbound = 0.0;
 
-double Partition_Constraint;
-
 int Total_area = 0.0;
 int Bound_area = 0.0;
 
-// int Iterations = 10;
-int Iterations = 1;
+int Iterations = 20;
 
 double START;
 double END;

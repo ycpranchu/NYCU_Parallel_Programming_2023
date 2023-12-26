@@ -8,7 +8,7 @@ for index in range(29):
     module_width = {}
     module_length = {}
 
-    data_in = open("testcase/case.in", "r")
+    data_in = open("testcase/case_300.in", "r")
     line_in = data_in.readlines()
     data_out = open("floorplan/partition_{}.out".format(index), "r")
     line_out = data_out.readlines()
